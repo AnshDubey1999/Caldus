@@ -16,7 +16,7 @@ const Tab = createBottomTabNavigator();
 function App() {
   return (
     <SafeAreaProvider>
-      {/* <NavigationContainer>
+      <NavigationContainer>
         <Tab.Navigator screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
@@ -41,8 +41,8 @@ function App() {
           <Tab.Screen name="Random" component={RandomScreen}/>
           <Tab.Screen name="IngredientToRecipe" component={IngredientToRecipeScreen}/>
         </Tab.Navigator>
-      </NavigationContainer> */}
-      <RecipeScreen id="156992" />
+      </NavigationContainer>
+      // <RecipeScreen id="156992" />
     </SafeAreaProvider>
   );
 }
