@@ -15,8 +15,7 @@ const Tab = createBottomTabNavigator();
 export function App() {
   return (
     <SafeAreaProvider>
-      <RandomOptionsScreen />
-      {/* <NavigationContainer>
+      <NavigationContainer>
         <Tab.Navigator>
           <Tab.Screen name="Home" component={HomeScreen} />
           <Tab.Screen name="Random" component={RandomScreen} />
@@ -24,9 +23,9 @@ export function App() {
             name="IngredientToRecipe"
             component={IngredientToRecipeScreen}
           />
-          <Tab.Screen name="Test" component={RandomOptionScreen} />
+          <Tab.Screen name="Test" component={RandomOptionsScreen} />
         </Tab.Navigator>
-      </NavigationContainer> */}
+      </NavigationContainer>
     </SafeAreaProvider>
   );
 }

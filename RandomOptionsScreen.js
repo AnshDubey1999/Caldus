@@ -3,37 +3,32 @@ import React, { useEffect, useState } from "react";
 import { API_KEY, API_HOST } from "./src/general";
 import { StyleSheet, Button, View, SafeAreaView, Text } from "react-native";
 import { ToggleButton } from "react-native-paper";
-
-function getRandomJoke() {
-  const fetchJoke = async () => {
-    await fetch(
-      "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/jokes/random",
-      {
-        method: "GET",
-        headers: {
-          "x-rapidapi-host": API_HOST,
-          "x-rapidapi-key": API_KEY,
-        },
-      }
-    )
-      .then((response) => response.json().then((res) => res))
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-}
+import { GetRandomAsync } from "./src/helpers/ApiHelper";
 
 export function RandomOptionsScreen() {
-  const [joke, setJoke] = useState("THIS IS A JOKE");
+  const [joke, setJoke] = useState("");
+  const [trivia, setTrivia] = useState("");
 
-  const onPressHandler = () => {
-    getRandomJoke();
+  const onPressHandler = async (type) => {
+    if (type === "jokes") {
+      setJoke(await GetRandomAsync(type));
+    }
+    if (type === "trivia") {
+      setTrivia(await GetRandomAsync(type));
+    }
   };
 
   return (
-    <View>
-      <Button title="Random Joke" onPress={onPressHandler} />
-      <Text>{joke}</Text>
+    <View style={styles.container}>
+      <Button title="Random Joke" onPress={() => onPressHandler("jokes")} />
+      <Text>{JSON.stringify(joke.text)}</Text>
+      <Button
+        style={[styles.button, styles.buttonOpen]}
+        title="Random Trivia"
+        onPress={() => onPressHandler("trivia")}
+      />
+      <Text>{JSON.stringify(trivia.text)}</Text>
+      <Button title="Random Recipe" />
     </View>
   );
 }
@@ -43,6 +38,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     marginHorizontal: 16,
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
   },
   title: {
     textAlign: "center",
