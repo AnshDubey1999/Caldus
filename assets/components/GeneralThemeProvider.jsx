@@ -31,8 +31,8 @@ export const styles = StyleSheet.create({
         color: "white",
     },
     h2: {
-        fontFamily: "Roboto_300Light",
+        fontFamily: "Roboto_400Regular",
         color: primary_400,
-        fontSize: 20,
+        fontSize: 40,
     },
 });
