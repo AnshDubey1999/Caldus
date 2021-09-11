@@ -3,8 +3,8 @@ import { Image, View, FlatList, ScrollView, SafeAreaView, Text, Platform, Pressa
 import { Ionicons } from '@expo/vector-icons';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { GetSearchRecipeAsync } from './src/helpers/ApiHelper';
-import { PRIMARY_400, PRIMARY_500, SECONDARY_300, styles } from './src/GeneralStyle';
+import { GetSearchRecipeAsync } from '../helpers/ApiHelper';
+import { PRIMARY_400, PRIMARY_500, SECONDARY_300, styles } from '../GeneralStyle';
 
 export default function RecipeScreen(props) {
 

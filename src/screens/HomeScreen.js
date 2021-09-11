@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-// import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Text, StyleSheet, View, StatusBar, FlatList } from 'react-native';
 import { API_HOST, API_KEY } from '../general';
@@ -20,33 +19,35 @@ const HomeScreen = () => {
                 "x-rapidapi-key": API_KEY
             }
         }).then(response => response.json().then(res => res)).then(final => {
-          setRecipes(final.results);
-          setBaseUri(final.baseUri);
+            setRecipes(final.results);
+            setBaseUri(final.baseUri);
         })
-        .catch(err => {
-            console.log("Something went wrong")
-        });
-      };
+            .catch(err => {
+                console.log("Something went wrong")
+            });
+    };
 
     useEffect(() => {
         fetchHealthyRecipes();
     }, []);
 
+    console.log(recipes)
+
     const renderItem = ({ item }) => {
-        return(
-            <RecipeBlock recipe={item} baseUri={baseUri}/>
+        return (
+            <RecipeBlock recipe={item} baseUri={baseUri} />
         )
     }
 
     return (
         <View style={styles.container}>
-            <FlatList 
+            <FlatList
                 data={recipes}
-                keyExtractor={ item => item.id.toString() }
+                keyExtractor={item => item.id.toString()}
                 renderItem={renderItem}
             />
         </View>
-     );
+    );
 }
 
 const styles = StyleSheet.create({
@@ -58,5 +59,5 @@ const styles = StyleSheet.create({
         color: 'white'
     }
 });
- 
+
 export default HomeScreen;

@@ -9,13 +9,14 @@ import { Feather, FontAwesome, Ionicons } from '@expo/vector-icons';
 import HomeScreen from './src/screens/HomeScreen';
 import RandomScreen from './src/screens/RandomScreen';
 import IngredientToRecipeScreen from './src/screens/IngredientToRecipeScreen';
+import RecipeScreen from './src/components/RecipeScreen';
 
 const Tab = createBottomTabNavigator();
 
 function App() {
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
+      {/* <NavigationContainer>
         <Tab.Navigator screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
