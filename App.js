@@ -24,7 +24,7 @@ function App() {
           <Tab.Screen name="IngredientToRecipe" component={IngredientToRecipeScreen}/>
         </Tab.Navigator>
       </NavigationContainer> */}
-      <RecipeScreen id="156992"/>
+      <RecipeScreen id="156992" />
     </SafeAreaProvider>
   );
 }

@@ -1,9 +1,10 @@
 import React from 'react'
-import {Image, View, FlatList, ScrollView, SafeAreaView, Text} from 'react-native'
+import { Image, View, FlatList, ScrollView, SafeAreaView, Text, Platform, Pressable, Button, TouchableHighlightBase, TouchableHighlight } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { GetSearchRecipeAsync } from './src/helpers/ApiHelper';
+import { PRIMARY_400, PRIMARY_500, SECONDARY_300, styles } from './src/GeneralStyle';
 
 export default function RecipeScreen(props) {
 
@@ -15,72 +16,108 @@ export default function RecipeScreen(props) {
     useEffect(() => {
         let data = ""
         async function fetchInit() {
-                    data = await GetSearchRecipeAsync(props.id)
-                    setInstruction(JSON.stringify(data['instructions']).replace(/\s+/g, ' ').replace('"', '').replace('Preparation', '').split('. '))
+            data = await GetSearchRecipeAsync(props.id)
+            setInstruction(JSON.stringify(data['instructions']).replace(/\s+/g, ' ').replace('"', '').replace('Preparation', '').split('. '))
 
-                    let ingredients = []
-                    let ingredientUnit = []
-                    let amountOfIngredient = []
-                    data['extendedIngredients'].map(ingredient => {ingredients.push(ingredient['name']); 
-                    amountOfIngredient.push(ingredient['amount']); ingredientUnit.push(ingredient['unit'])})
-                    
-                    setIngredient(ingredients)
-                    setIngredientAmount(amountOfIngredient)
-                    setUnitAmount(ingredientUnit)
-                }
+            let ingredients = []
+            let ingredientUnit = []
+            let amountOfIngredient = []
+            data['extendedIngredients'].map(ingredient => {
+                ingredients.push(ingredient['name']);
+                amountOfIngredient.push(ingredient['amount']); ingredientUnit.push(ingredient['unit'])
+            })
+
+            setIngredient(ingredients)
+            setIngredientAmount(amountOfIngredient)
+            setUnitAmount(ingredientUnit)
+        }
         fetchInit()
     }, [])
 
     return (
-        <SafeAreaView>
-            <ScrollView style={{paddingTop:50, padding:30}} contentContainerStyle={{display: 'flex'}}>
-                <View style={{alignItems:"center"}}>
-                    <Image source={{ 
-                        width: 300, 
+        <SafeAreaView style={[styles.view]}>
+            <ScrollView contentContainerStyle={{ padding: 20, paddingVertical: 50 }}>
+                <View style={{ alignItems: "center" }}>
+                    <Image source={{
+                        width: '100%',
                         height: 200,
-                        uri: "https://spoonacular.com/recipeImages/char-grilled-beef-tenderloin-with-three-herb-chimichurri-156992.jpg"}} />
+                        uri: "https://spoonacular.com/recipeImages/char-grilled-beef-tenderloin-with-three-herb-chimichurri-156992.jpg"
+                    }}
+                        style={{ borderRadius: 15 }}
+                    />
                 </View>
                 <Text style={{
-                    fontWeight:"bold",
-                    paddingTop: 30,
-                    paddingBottom: 30,
-                    fontSize:25,
-                    textAlign:"center"}}>
-                        Char-Grilled Beef Tenderloin with Three-Herb Chimichurri </Text>
-                <Text style={{
-                    textAlign:"center",
-                    paddingBottom:30,
-                    fontSize:20
-                }}>Ready in: 45 mins</Text>
-                <Text style={{
-                    textAlign:"left",
-                    paddingBottom:30,
-                    fontSize:20,
-                    fontWeight:"bold"
-                }}>Ingredients:</Text>
-                <FlatList 
-                data={ingredient}
-                renderItem={({item, index}) => 
-                <View key={index} style={{display: 'flex', flexDirection: 'row', alignItems:'center'}}>
-                    <Text style={{marginTop: 5}}>{index+1}. {item}: {ingredientAmount[index]}</Text>
-                    <Text style={{marginTop: 5}}>{unitAmount[index]}</Text>
+                    fontWeight: "bold",
+                    marginTop: 10,
+                    fontSize: 30,
+                    color: 'white'
+                }}>
+                    Char-Grilled Beef Tenderloin with Three-Herb Chimichurri </Text>
+                <View style={{ alignItems: 'flex-start' }}>
+                    <Text style={{
+                        backgroundColor: PRIMARY_400,
+                        textAlign: 'center',
+                        padding: 3,
+                        fontSize: 20,
+                        borderRadius: 10,
+                        marginTop: 10,
+                        color: 'white',
+                        fontWeight: "bold"
+                    }}>Ready in: 45 mins</Text>
+                </View>
+
+                <View style={{ alignItems: 'flex-start' }}>
+                    <Text style={{
+                        textAlign: "left",
+                        color: 'white',
+                        fontSize: 25,
+                        padding: 3,
+                        paddingHorizontal: 10,
+                        marginTop: 30,
+                        fontWeight: "bold",
+                        backgroundColor: SECONDARY_300,
+                        borderRadius: 15
+                    }}>Ingredients</Text>
+                </View>
+                {ingredient.map((item, index) =>
+                    <View key={index} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', marginTop: 5, width: '100%' }}>
+                        <Text style={{ color: 'white', fontSize: 15 }}>{index + 1}. {item[0].toUpperCase()}{item.substring(1)}  </Text>
+                        <View style={{ flexDirection: 'row', justifyContent: 'flex-start', padding: 3, paddingHorizontal: 10, backgroundColor: PRIMARY_400, borderRadius: 10 }}>
+                            <Text style={{ fontWeight: 'bold', textAlign: 'center', color: 'white', fontSize: 12 }}>{ingredientAmount[index]} </Text>
+                            <Text style={{ fontWeight: 'bold', textAlign: 'center', color: 'white', fontSize: 12, }}>{unitAmount[index]}  </Text>
+                        </View>
                     </View>
-                    }
-                />
-                <Text style={{
-                    textAlign:"left",
-                    paddingBottom:30,
-                    paddingTop:30,
-                    fontSize:20,
-                    fontWeight:"bold"
-                }}>Instructions</Text>
-                <FlatList 
-                data={instruction}
-                renderItem={({item, index}) => <Text style={{marginTop: 5}}>{index+1}. {item}.</Text>}
-                keyExtractor={item => item}
-                />
+                )}
+                <View style={{ alignItems: 'flex-start' }}>
+                    <Text style={{
+                        textAlign: "left",
+                        color: 'white',
+                        fontSize: 25,
+                        padding: 3,
+                        paddingHorizontal: 10,
+                        marginTop: 30,
+                        fontWeight: "bold",
+                        backgroundColor: SECONDARY_300,
+                        borderRadius: 15
+                    }}>Instructions</Text>
+                </View>
+
+                {
+                    instruction.map((item, index) => <Text key={index} style={{ marginTop: 5, fontSize: 15, color: 'white' }}>{index + 1}. {item}.</Text>)
+                }
             </ScrollView>
+            <TouchableHighlight
+                style={{
+                    position: 'absolute', bottom: 15, right: 15, borderRadius: 50, backgroundColor: PRIMARY_400,
+                    paddingHorizontal: 10, paddingVertical: 5,
+                    display: "flex", alignItems: 'center', justifyContent: 'center'
+                }}
+                underlayColor={PRIMARY_500}
+                onPress={() => console.log('hi')}
+            >
+                <Text style={{ fontSize: 25, color: 'white' }}>Optimize</Text>
+            </TouchableHighlight>
         </SafeAreaView>
     )
-    
+
 }
