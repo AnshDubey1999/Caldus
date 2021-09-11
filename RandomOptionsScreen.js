@@ -20,6 +20,8 @@ import {
 export function RandomOptionsScreen() {
   const [joke, setJoke] = useState("");
   const [trivia, setTrivia] = useState("");
+  const [isJokeVisible, setJokeVisible] = userState(false);
+  const [isTriviaVisible, setTriviaVisible] = userState(false);
 
   const onPressHandler = async (type) => {
     if (type === "jokes") {
@@ -30,17 +32,31 @@ export function RandomOptionsScreen() {
     }
   };
 
+  const toggleJokeOverlay = () => {
+    setJokeVisible(!isJokeVisible);
+  };
+
+  const toggleTriviaOverlay = () => {
+    setTriviaVisible(!isTriviaVisible);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.row}>
         <Fontisto name="laughing" size={30} color="black" />
         <Pressable
           style={styles.button}
-          onPress={() => onPressHandler("jokes")}
+          onPress={() => {
+            onPressHandler("jokes");
+            toggleJokeOverlay();
+          }}
         >
           <Text style={styles.buttonText}>Random Joke</Text>
         </Pressable>
-        <Text>{JSON.stringify(joke.text)}</Text>
+
+        <Overlay isVisible={isJokeVisible} onBackdropPress={toggleJokeOverlay}>
+          <Text>{JSON.stringify(joke.text)}</Text>
+        </Overlay>
       </View>
       <View style={styles.row}>
         <MaterialCommunityIcons
@@ -50,9 +66,17 @@ export function RandomOptionsScreen() {
         />
         <Pressable
           title="Random Trivia"
-          onPress={() => onPressHandler("trivia")}
+          onPress={() => {
+            onPressHandler("trivia");
+            toggleTriviaOverlay();
+          }}
         />
-        <Text>{JSON.stringify(trivia.text)}</Text>
+        <Overlay
+          isVisible={isTriviaVisible}
+          onBackdropPress={toggleTriviaOverlay}
+        >
+          <Text>{JSON.stringify(trivia.text)}</Text>
+        </Overlay>
       </View>
       <View style={styles.row}>
         <FontAwesome name="list" size={30} color="black" />
