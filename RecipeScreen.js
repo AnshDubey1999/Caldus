@@ -7,6 +7,8 @@ import { GetSearchRecipeAsync } from './src/helpers/ApiHelper';
 
 export default function RecipeScreen(props) {
 
+    const [recipeTitle, setRecipeTitle] = useState([])
+    const [imageURL, setImageURL] = useState([])
     const [instruction, setInstruction] = useState([])
     const [ingredient, setIngredient] = useState([])
     const [ingredientAmount, setIngredientAmount] = useState([])
@@ -16,6 +18,11 @@ export default function RecipeScreen(props) {
         let data = ""
         async function fetchInit() {
                     data = await GetSearchRecipeAsync(props.id)
+
+                    setImageURL((data['image']))
+
+                    setRecipeTitle(JSON.stringify(data['title']).replace('"', "").replace('"', ""))
+
                     setInstruction(JSON.stringify(data['instructions']).replace(/\s+/g, ' ').replace('"', '').replace('Preparation', '').split('. '))
 
                     let ingredients = []
@@ -23,7 +30,7 @@ export default function RecipeScreen(props) {
                     let amountOfIngredient = []
                     data['extendedIngredients'].map(ingredient => {ingredients.push(ingredient['name']); 
                     amountOfIngredient.push(ingredient['amount']); ingredientUnit.push(ingredient['unit'])})
-                    
+
                     setIngredient(ingredients)
                     setIngredientAmount(amountOfIngredient)
                     setUnitAmount(ingredientUnit)
@@ -38,15 +45,14 @@ export default function RecipeScreen(props) {
                     <Image source={{ 
                         width: 300, 
                         height: 200,
-                        uri: "https://spoonacular.com/recipeImages/char-grilled-beef-tenderloin-with-three-herb-chimichurri-156992.jpg"}} />
+                        uri: imageURL}} />
                 </View>
                 <Text style={{
                     fontWeight:"bold",
                     paddingTop: 30,
                     paddingBottom: 30,
                     fontSize:25,
-                    textAlign:"center"}}>
-                        Char-Grilled Beef Tenderloin with Three-Herb Chimichurri </Text>
+                    textAlign:"center"}}>{recipeTitle}</Text>
                 <Text style={{
                     textAlign:"center",
                     paddingBottom:30,
