@@ -10,17 +10,17 @@ const RecipeBlock = (props) => {
     const { title, image, readyInMinutes, servings } = props.recipe;
     return (
         <View style={styles.container}>
-            <Image 
+            <Image
                 source={{ uri: baseUri + image }}
-                style={styles.imageStyle}/>
+                style={styles.imageStyle} />
             <Text style={styles.titleStyle}>{title}</Text>
             <View style={styles.bottomContainerStyle}>
-                <Feather name="clock" size={16} color="white" style={{ marginRight: 5 }}/>
+                <Feather name="clock" size={16} color="white" style={{ marginRight: 5 }} />
                 <Text style={styles.textStyle}>Preparation time:</Text>
                 <Text style={styles.textStyle2}>{readyInMinutes} minutes</Text>
             </View>
             <View style={styles.bottomContainerStyle}>
-                <Ionicons name="fast-food" size={16} color="white" style={{ marginRight: 5 }}/>
+                <Ionicons name="fast-food" size={16} color="white" style={{ marginRight: 5 }} />
                 <Text style={styles.textStyle}>Servings:</Text>
                 <Text style={styles.textStyle2}>{servings}</Text>
             </View>
@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
         marginBottom: 5
     },
     imageStyle: {
-        height: 150, 
-        width: 350, 
+        height: 150,
+        width: 350,
         borderRadius: 10,
         marginBottom: 10
     },

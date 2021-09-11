@@ -9,6 +9,7 @@ import { Feather, FontAwesome, Ionicons } from '@expo/vector-icons';
 import HomeScreen from './src/screens/HomeScreen';
 import RandomScreen from './src/screens/RandomScreen';
 import IngredientToRecipeScreen from './src/screens/IngredientToRecipeScreen';
+import RecipeScreen from './src/components/RecipeScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -41,6 +42,7 @@ function App() {
           <Tab.Screen name="IngredientToRecipe" component={IngredientToRecipeScreen}/>
         </Tab.Navigator>
       </NavigationContainer>
+      // <RecipeScreen id="156992" />
     </SafeAreaProvider>
   );
 }

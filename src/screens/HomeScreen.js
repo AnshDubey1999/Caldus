@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-// import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Text, StyleSheet, View, StatusBar, FlatList } from 'react-native';
 import { API_HOST, API_KEY } from '../general';
@@ -58,5 +57,5 @@ const styles = StyleSheet.create({
         color: 'white'
     }
 });
- 
+
 export default HomeScreen;
