@@ -1,5 +1,6 @@
+import { API_HOST, API_KEY } from '../general'
+
 const axios = require('axios').default
-const API_KEY = '22d95c216dmshd9c7b0d95bb37d4p1dcd6ejsnb496ab819159'
 
 // How to fetch
 // const [data, setData] = useState([])
@@ -16,7 +17,7 @@ export function GetSearchRecipeAsync(id) {
         method: 'GET',
         url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`,
         headers: {
-            'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+            'x-rapidapi-host': API_HOST,
             'x-rapidapi-key': API_KEY
         }
     }
@@ -38,7 +39,7 @@ export function GetRandomAsync(type) {
         method: 'GET',
         url: type === 'recipe' ? 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random' : `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/${type}/random`,
         headers: {
-            'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+            'x-rapidapi-host': API_HOST,
             'x-rapidapi-key': API_KEY
         }
     }
