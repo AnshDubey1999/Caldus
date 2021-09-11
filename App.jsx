@@ -7,7 +7,7 @@ export default function App() {
   return (
     <GeneralThemeProvider>
       <View style={styles.center}>
-        <Text style={styles.h2}>Title</Text>
+        <Text style={styles.h2}>Fun Title</Text>
         <StatusBar style="auto" />
       </View>
     </GeneralThemeProvider>
