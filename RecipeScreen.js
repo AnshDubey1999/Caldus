@@ -8,6 +8,8 @@ import { PRIMARY_400, PRIMARY_500, SECONDARY_300, styles } from './src/GeneralSt
 
 export default function RecipeScreen(props) {
 
+    const [recipeTitle, setRecipeTitle] = useState([])
+    const [imageURL, setImageURL] = useState([])
     const [instruction, setInstruction] = useState([])
     const [ingredient, setIngredient] = useState([])
     const [ingredientAmount, setIngredientAmount] = useState([])
@@ -17,6 +19,9 @@ export default function RecipeScreen(props) {
         let data = ""
         async function fetchInit() {
             data = await GetSearchRecipeAsync(props.id)
+
+            setImageURL((data['image']))
+            setRecipeTitle(JSON.stringify(data['title']).replace('"', "").replace('"', ""))
             setInstruction(JSON.stringify(data['instructions']).replace(/\s+/g, ' ').replace('"', '').replace('Preparation', '').split('. '))
 
             let ingredients = []
@@ -38,11 +43,7 @@ export default function RecipeScreen(props) {
         <SafeAreaView style={[styles.view]}>
             <ScrollView contentContainerStyle={{ padding: 20, paddingVertical: 50 }}>
                 <View style={{ alignItems: "center" }}>
-                    <Image source={{
-                        width: '100%',
-                        height: 200,
-                        uri: "https://spoonacular.com/recipeImages/char-grilled-beef-tenderloin-with-three-herb-chimichurri-156992.jpg"
-                    }}
+                    <Image source={{ width: '100%', height: 200, uri: imageURL }}
                         style={{ borderRadius: 15 }}
                     />
                 </View>
@@ -52,8 +53,8 @@ export default function RecipeScreen(props) {
                     fontSize: 30,
                     color: 'white'
                 }}>
-                    Char-Grilled Beef Tenderloin with Three-Herb Chimichurri </Text>
-                <View style={{ alignItems: 'flex-start' }}>
+                    {recipeTitle}</Text>
+                <View style={{ alignContent: 'center' }}>
                     <Text style={{
                         backgroundColor: PRIMARY_400,
                         textAlign: 'center',
@@ -101,7 +102,6 @@ export default function RecipeScreen(props) {
                         borderRadius: 15
                     }}>Instructions</Text>
                 </View>
-
                 {
                     instruction.map((item, index) => <Text key={index} style={{ marginTop: 5, fontSize: 15, color: 'white' }}>{index + 1}. {item}.</Text>)
                 }
