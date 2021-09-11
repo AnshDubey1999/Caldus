@@ -9,7 +9,7 @@ import { PRIMARY_400, PRIMARY_500, SECONDARY_300, styles } from './src/GeneralSt
 export default function RecipeScreen(props) {
 
     const [recipeTitle, setRecipeTitle] = useState([])
-    const [imageURL, setImageURL] = useState([])
+    const [imageURL, setImageURL] = useState("")
     const [instruction, setInstruction] = useState([])
     const [ingredient, setIngredient] = useState([])
     const [ingredientAmount, setIngredientAmount] = useState([])
