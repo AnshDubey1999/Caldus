@@ -17,13 +17,14 @@ const Tab = createBottomTabNavigator();
 function App() {
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
+      {/* <NavigationContainer>
         <Tab.Navigator>
           <Tab.Screen name="Home" component={HomeScreen}/>
           <Tab.Screen name="Random" component={RandomScreen}/>
           <Tab.Screen name="IngredientToRecipe" component={IngredientToRecipeScreen}/>
         </Tab.Navigator>
-      </NavigationContainer>
+      </NavigationContainer> */}
+      <RecipeScreen id="156992"/>
     </SafeAreaProvider>
   );
 }
