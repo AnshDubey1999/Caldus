@@ -28,12 +28,13 @@ export default function RecipeScreen(props) {
     useEffect(() => {
         let data = ""
         async function fetchInit() {
-            data = await GetSearchRecipeAsync(props.id) ?? {
-                image: 'https://www.aheadofthyme.com/wp-content/uploads/2016/01/indian-butter-chicken-3.jpg',
-                title: 'Some food',
-                instructions: 'PreparationFor spice rub: Combine all ingredients in small bowl. Do ahead: Can be made 2 days ahead. Store airtight at room temperature. For chimichurri sauce: Combine first 8 ingredients in blender; blend until almost smooth. Add 1/4 of parsley, 1/4 of cilantro, and 1/4 of mint; blend until incorporated. Add remaining herbs in 3 more additions, pureeing until almost smooth after each addition. Do ahead: Can be made 3 hours ahead. Cover; chill. For beef tenderloin: Let beef stand at room temperature 1 hour. Prepare barbecue (high heat). Pat beef dry with paper towels; brush with oil. Sprinkle all over with spice rub, using all of mixture (coating will be thick). Place beef on grill; sear 2 minutes on each side. Reduce heat to medium-high. Grill uncovered until instant-read thermometer inserted into thickest part of beef registers 130F for medium-rare, moving beef to cooler part of grill as needed to prevent burning, and turning occasionally, about 40 minutes. Transfer to platter; cover loosely with foil and let rest 15 minutes. Thinly slice beef crosswise. Serve with chimichurri sauce. *Available at specialty foods stores and from tienda.com.',
-                extendedIngredients: [{ name: 'Butter', amount: '2', unit: 'tablespoons' }, { name: 'Egg', amount: '1', unit: 'tablespoons' }, { name: 'Sour cream', amount: '2', unit: 'tablespoons' }]
-            }
+            data = await GetSearchRecipeAsync(props.id)
+            // ?? {
+            //     image: 'https://www.aheadofthyme.com/wp-content/uploads/2016/01/indian-butter-chicken-3.jpg',
+            //     title: 'Some food',
+            //     instructions: 'PreparationFor spice rub: Combine all ingredients in small bowl. Do ahead: Can be made 2 days ahead. Store airtight at room temperature. For chimichurri sauce: Combine first 8 ingredients in blender; blend until almost smooth. Add 1/4 of parsley, 1/4 of cilantro, and 1/4 of mint; blend until incorporated. Add remaining herbs in 3 more additions, pureeing until almost smooth after each addition. Do ahead: Can be made 3 hours ahead. Cover; chill. For beef tenderloin: Let beef stand at room temperature 1 hour. Prepare barbecue (high heat). Pat beef dry with paper towels; brush with oil. Sprinkle all over with spice rub, using all of mixture (coating will be thick). Place beef on grill; sear 2 minutes on each side. Reduce heat to medium-high. Grill uncovered until instant-read thermometer inserted into thickest part of beef registers 130F for medium-rare, moving beef to cooler part of grill as needed to prevent burning, and turning occasionally, about 40 minutes. Transfer to platter; cover loosely with foil and let rest 15 minutes. Thinly slice beef crosswise. Serve with chimichurri sauce. *Available at specialty foods stores and from tienda.com.',
+            //     extendedIngredients: [{ name: 'Butter', amount: '2', unit: 'tablespoons' }, { name: 'Egg', amount: '1', unit: 'tablespoons' }, { name: 'Sour cream', amount: '2', unit: 'tablespoons' }]
+            // }
 
             setImageURL((data['image']))
             setRecipeTitle(JSON.stringify(data['title']).replace('"', "").replace('"', ""))
