@@ -1,16 +1,27 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Text, StyleSheet, View, FlatList } from 'react-native';
-import { Input, Chip, Button } from 'react-native-elements';
+import { Text, StyleSheet, View, FlatList, Dimensions } from 'react-native';
+import { Input, Chip, Button, Overlay } from 'react-native-elements';
 import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
+import OverlayWithin2 from '../components/OverlayWithin2';
+import { ingredientToRecipeTest } from '../general';
 
-const IngredientToRecipeScreen = () => {
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
+
+const IngredientToRecipeScreen = ({ navigation }) => {
 
     const [input, setInput] = useState('');
     const [ingredientList, setList] = useState([]);
     const [counter, setCounter] = useState(0);
     const [error, setError] = useState('');
+
+    const [visible, setVisible] = useState(false);
+
+    const toggleOverlay = () => {
+        setVisible(!visible);
+      };
 
     const renderItem = ({ item }) => {
         return (
@@ -27,7 +38,7 @@ const IngredientToRecipeScreen = () => {
                         setError('');
                     }}
                 /> 
-             </View> 
+             </View>
             );
     }
 
@@ -62,10 +73,20 @@ const IngredientToRecipeScreen = () => {
                 />
             </View>
             {error ? <Text style={{ color: 'cyan', alignSelf: 'center' }}>{error}</Text> : null}
+            <Overlay 
+                isVisible={visible} 
+                onBackdropPress={toggleOverlay}
+                overlayStyle={{ height: height/2, width: width - 100 }} >
+                <OverlayWithin2 items={ingredientToRecipeTest} navigation={navigation} toggle={toggleOverlay}/>
+
+            </Overlay>
             <View>
                 <Button 
                     title="Find Recipes!"
-                    buttonStyle={{ backgroundColor: 'tomato' }}
+                    buttonStyle={{ backgroundColor: 'tomato', marginTop: 250, marginHorizontal: 15, borderRadius: 6 }}
+                    onPress={ () => {
+                        toggleOverlay();
+                    } }
                 />
             </View>
 
