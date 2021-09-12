@@ -108,7 +108,7 @@ export default function RecipeScreen(props) {
                         textAlign: "left",
                         color: 'white',
                         fontSize: 25,
-                        marginTop: 30,
+                        marginTop: 0,
                         marginBottom: 5,
                         fontWeight: "bold",
                     }}>Ingredients  </Text>
