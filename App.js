@@ -47,25 +47,30 @@ function App() {
   );
 }
 
-const swap = {
-  "butter":["margarine","olive oil","apple sauce"],
-  "cream":["fat free half-and-half","evaporated skim milk"],
-  "bread crumbs":["rolled oats","crushed bran cereal"],
-  "cream cheese":["fat-free cream cheese","cottage cheese"],
-  "egg":["egg white"],
-  "flour":["whole wheat flour","coconut flour","nut flour","oats"],
-  "ground beef":["lean ground beef","ground chicken breast","ground turkey breast"],
-  "mayonnaise":["reduced-fat mayonnaise","low-fat yogurt","hummus","avacado"],
-  "evaporated milk":["evaporated skim milk"],
-  "milk":["fat free milk","low fat milk"],
-  "pasta":["whole wheat pasta"],
-  "rice":["brown rice"],
-  "sour cream":["low fat sour cream","low fat yogurt"],
-  "sugar":["cinnamon","nutmeg","vanilla","apple sauce","honey","mashed bananas","maple syrup"],
-  "salt":["garlic powder", "onion powder", "paprika", "herbs"],
-  "potato":["sweet potato"],
-  "bacon":["prosciutto"]
-  }
+export const swap = {
+  "butter": ["olive oil", "apple sauce", "avocado puree", "chia seeds"],
+  "cream": ["fat free half-and-half", "evaporated skim milk"],
+  "bread crumbs": ["rolled oats", "crushed bran cereal"],
+  "cream cheese": ["fat-free cream cheese", "cottage cheese"],
+  "egg": ["egg white", "chia seeds", "flax meal"],
+  "flour": ["whole wheat flour", "coconut flour", "nut flour", "oats"],
+  "ground beef": ["lean ground beef", "ground chicken breast", "ground turkey breast"],
+  "mayonnaise": ["reduced-fat mayonnaise", "low-fat yogurt", "hummus", "avacado"],
+  "evaporated milk": ["evaporated skim milk"],
+  "milk": ["fat free milk", "low fat milk"],
+  "pasta": ["whole wheat pasta"],
+  "rice": ["brown rice"],
+  "sour cream": ["low fat sour cream", "low fat yogurt"],
+  "sugar": ["stevia", "cinnamon", "nutmeg", "vanilla", "apple sauce", "honey", "mashed bananas", "maple syrup"],
+  "salt": ["garlic powder", "onion powder", "paprika", "herbs"],
+  "potato": ["sweet potato"],
+  "bacon": ["prosciutto"],
+  "chocolate chips": ["cacao nibs"],
+  "tortilla wraps": ["lettuce leaves"],
+  "flour tortilla": ["corn tortilla"],
+  "bread": ["pita"],
+  "pasta": ["spagehtti squash"]
+}
 
 const styles = StyleSheet.create({
   tabStyle: {
