@@ -29,6 +29,23 @@ export function GetSearchRecipeAsync(id) {
         ).catch(error => console.error(error))
 }
 
+export function GetNutritionById(id) {
+    const option = {
+        method: 'GET',
+        url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/nutritionWidget.json`,
+        headers: {
+            'x-rapidapi-host': API_HOST,
+            'x-rapidapi-key': API_KEY
+        }
+    }
+    return axios
+        .request(option)
+        .then(response => {
+            return response.data
+        }
+        ).catch(error => console.error(error))
+}
+
 /**
  * 
  * @param {string} type 'jokes', 'trivia', 'recipes'

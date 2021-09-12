@@ -1,23 +1,24 @@
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { NavigationContainer , DefaultTheme} from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather, FontAwesome, Ionicons } from '@expo/vector-icons';
 
 import HomeScreen from './src/screens/HomeScreen';
-import RandomScreen from './src/screens/RandomScreen';
+import RandomScreen, { RandomStack } from './src/screens/RandomScreen';
 import IngredientToRecipeScreen from './src/screens/IngredientToRecipeScreen';
 import RecipeScreen from './src/components/RecipeScreen';
+import { PRIMARY_400, SECONDARY_400 } from './src/GeneralStyle';
 
 const Stack1 = createNativeStackNavigator();
 
 const RootStack1 = () => {
-  return(
+  return (
     <Stack1.Navigator>
-      <Stack1.Screen name="Home" component={HomeScreen}/>
-      <Stack1.Screen name="RecipeScreen" component={RecipeScreen} />
+      <Stack1.Screen name="Home" component={HomeScreen} />
+      <Stack1.Screen options={{ header: () => null }} name="RecipeScreen" component={RecipeScreen} />
     </Stack1.Navigator>
   );
 };
@@ -38,9 +39,9 @@ const MyTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    card: '#23272a',
-    border: '#23272a',
-    text:'white',
+    card: SECONDARY_400,
+    border: SECONDARY_400,
+    text: 'white',
   },
 };
 
@@ -62,18 +63,17 @@ function App() {
             return <Ionicons name="fast-food-outline" size={size} color={color} />;
 
           },
-          tabBarActiveTintColor: 'tomato',
+          tabBarActiveTintColor: PRIMARY_400,
           tabBarInactiveTintColor: 'gray',
-          tabBarBackground: () => <View style={{ backgroundColor: '#23272a', flex: 1 }}></View>,
+          tabBarBackground: () => <View style={{ backgroundColor: SECONDARY_400, flex: 1 }}></View>,
           tabBarShowLabel: false,
-          tabBarStyle: styles.tabStyle
+          tabBarStyle: styles.tabStyle,
         })}>
           <Tab.Screen name="HomeScreen" component={RootStack1} options={{ headerShown: false }} />
           <Tab.Screen name="Random" component={RandomScreen} />
           <Tab.Screen name="IngredientToRecipeScreen" component={RootStack2} options={{ headerShown: false }}/>
         </Tab.Navigator>
       </NavigationContainer>
-      {/* <RecipeScreen id="156992" /> */}
     </SafeAreaProvider>
   );
 }
