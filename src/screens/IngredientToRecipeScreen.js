@@ -17,7 +17,7 @@ const IngredientToRecipeScreen = ({ navigation }) => {
     const fetchRecipesFromIngredients = async () => {
         const temp = ingredientList.map(item => item.name);
         const stringToPass = temp.join('%2c');
-        await fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ranking=1&ignorePantry=true&number=1&ingredients="+ stringToPass, {
+        await fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ranking=1&ignorePantry=true&number=3&ingredients="+ stringToPass, {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": API_HOST,

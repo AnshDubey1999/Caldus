@@ -10,7 +10,6 @@ const RecipeBlockSmall = (props) => {
     const { title, image } = props.recipe;
     return(
         <View style={styles.container}>
-            <Text style={styles.title}>Recipes found</Text>
             <Image 
                 source={{ uri: image }}
                 style={styles.image}
