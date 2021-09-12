@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Text, StyleSheet ,TextInput, FlatList} from 'react-native';
+import { Input } from 'react-native-elements';
+import { Text, StyleSheet, FlatList} from 'react-native';
 
 const TestScreen = () => {
     const [ingredientList,setIngredientList]=useState([]);
@@ -9,23 +10,20 @@ const TestScreen = () => {
     //setIngredients([...ingredients,newIngredient])
     //set ingredient list to all previous ingredients + new one
     const [input, setInput] = useState('');
+    const inputElement = React.createRef();
+    
+    return (
+    <SafeAreaView>
 
-    return ( 
-        <SafeAreaView>
-            <Text>TestScreen</Text>
-            <TextInput
-                value={input}
-                onChangeText={text => setInput(text)}
-                placeholder="Input Ingredients"
-                onSubmitEditing={() => setIngredientList([...ingredientList, input])}
-                
-            ></TextInput>
+      <Input
+        ref = {inputElement}
+        placeholder="Input Ingredients"
+        onChangeText={text=>setInput(text)}
+        onSubmitEditing={() => {setIngredientList([...ingredientList, input])
+        inputElement.current.clear()}}
+      ></Input> 
 
-            {/* <FlatList
-                data={ingredientList}
-            /> */}
-
-        </SafeAreaView>
+  </SafeAreaView>
      );
 
     
