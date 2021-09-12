@@ -66,11 +66,19 @@ export default function RecipeScreen({ navigation, route }) {
     }, [])
 
     useEffect(() => {
-        let hasSub = true
-        //ingredient.forEach(item => getSubstitute(item).toLowerCase() !== item.toLowerCase() ? hasSub = true : hasSub = false)
+        let hasSub = false
+        for (let i = 0; i < ingredient.length; i++) {
+            let item = ingredient[i]
+            if (getSubstitute(item).toLowerCase() !== item.toLowerCase()) {
+                hasSub = true
+                break
+            } else {
+                hasSub = false
+            }
+        }
         setHasSubstitute(hasSub)
     }, [ingredient])
-    
+
     const getSubstitute = (item) => {
         let lItem = item.toLowerCase()
         const index = Object.keys(swap).findIndex(x => x === lItem)
