@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { GetSearchRecipeAsync } from '../helpers/ApiHelper';
 import { PRIMARY_400, PRIMARY_500, SECONDARY_300, styles } from '../GeneralStyle';
-import { swap } from '../../App';
+import { swap } from '../general';
 import { ProgressChart } from 'react-native-chart-kit';
 
 export default function RecipeScreen(props) {
