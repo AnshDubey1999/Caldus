@@ -41,7 +41,7 @@ function App() {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === 'Home') {
+            if (route.name === 'HomeScreen') {
               return <Feather name="home" size={size} color={color} />;
 
             } else if (route.name === 'Random') {

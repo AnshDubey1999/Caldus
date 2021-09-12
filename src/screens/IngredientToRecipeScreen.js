@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Text, StyleSheet, View, FlatList } from 'react-native';
-import { Input, Chip } from 'react-native-elements';
+import { Input, Chip, Button } from 'react-native-elements';
 import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 
 const IngredientToRecipeScreen = () => {
@@ -62,6 +62,12 @@ const IngredientToRecipeScreen = () => {
                 />
             </View>
             {error ? <Text style={{ color: 'cyan', alignSelf: 'center' }}>{error}</Text> : null}
+            <View>
+                <Button 
+                    title="Find Recipes!"
+                    buttonStyle={{ backgroundColor: 'tomato' }}
+                />
+            </View>
 
         </View>
      );
