@@ -60,18 +60,12 @@ export default function RecipeScreen(props) {
                     color: 'white'
                 }}>
                     {recipeTitle}</Text>
-                <View style={{
-                    alignSelf: 'flex-start', backgroundColor: 'white',
-                    marginTop: 10, padding: 3, borderRadius: 15,
-                }}>
-                    <Text style={{
-                        textAlign: 'center',
-                        fontWeight: 'bold',
-                        fontSize: 20,
-                        marginLeft: 10,
-                        color: PRIMARY_400,
-                    }}>Ready in: 45 mins   </Text>
-                </View>
+                <Text style={{
+                    textAlign: 'left',
+                    fontWeight: 'bold',
+                    fontSize: 20,
+                    color: PRIMARY_400,
+                }}>Ready in: 45 mins</Text>
 
                 <View style={{ alignItems: 'flex-start' }}>
                     <Text style={{
@@ -86,7 +80,7 @@ export default function RecipeScreen(props) {
                 {ingredient.map((item, index) =>
                     <View key={index} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', marginTop: 5, width: '100%' }}>
                         <Text style={{ color: 'white', fontSize: 15 }}>{index + 1}. {item[0].toUpperCase()}{item.substring(1)}  </Text>
-                        <View style={{ flexDirection: 'row', justifyContent: 'flex-start', padding: 3, paddingHorizontal: 10, backgroundColor: 'white', borderRadius: 10 }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'flex-start', padding: 3, paddingHorizontal: 10, backgroundColor: SECONDARY_300, borderRadius: 10 }}>
                             <Text style={{ fontWeight: 'bold', textAlign: 'center', color: PRIMARY_400, fontSize: 12 }}>{ingredientAmount[index]} </Text>
                             <Text style={{ fontWeight: 'bold', textAlign: 'center', color: PRIMARY_400, fontSize: 12, }}>{unitAmount[index]}  </Text>
                         </View>
