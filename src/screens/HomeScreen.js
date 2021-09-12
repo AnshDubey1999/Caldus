@@ -5,6 +5,7 @@ import { Text, StyleSheet, View, StatusBar, FlatList, TouchableOpacity } from 'r
 import { API_HOST, API_KEY, recipesMainList } from '../general';
 
 import RecipeBlock from '../components/RecipeBlock';
+import { SECONDARY_400 } from '../GeneralStyle';
 
 const HomeScreen = ({ navigation }) => {
 
@@ -32,31 +33,31 @@ const HomeScreen = ({ navigation }) => {
     // }, []);
 
     const renderItem = ({ item }) => {
-        return(
+        return (
             <TouchableOpacity onPress={() => {
-                navigation.navigate('RecipeScreen', { 
+                navigation.navigate('RecipeScreen', {
                     id: item.id
                 })
             }}>
-                <RecipeBlock recipe={item} baseUri={baseUri}/>
+                <RecipeBlock recipe={item} baseUri={baseUri} />
             </TouchableOpacity>
         )
     }
 
     return (
         <View style={styles.container}>
-            <FlatList 
+            <FlatList
                 data={recipes}
-                keyExtractor={ item => item.id.toString() }
+                keyExtractor={item => item.id.toString()}
                 renderItem={renderItem}
             />
         </View>
-     );
+    );
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#23272a',
+        backgroundColor: SECONDARY_400,
         flex: 1
     },
     textStyle: {

@@ -6,6 +6,7 @@ import { Button, Overlay } from 'react-native-elements';
 import { Ionicons, FontAwesome5, FontAwesome } from '@expo/vector-icons';
 import { API_HOST, API_KEY } from '../general';
 import OverlayWithin from '../components/OverlayWithin';
+import { SECONDARY_400 } from '../GeneralStyle';
 
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
@@ -23,9 +24,9 @@ const RandomScreen = () => {
             setTrivia('');
             setJoke(final.text);
         })
-        .catch(err => {
-            console.log("Something went wrong")
-        });
+            .catch(err => {
+                console.log("Something went wrong")
+            });
     };
 
     const fetchTrivia = async () => {
@@ -36,13 +37,13 @@ const RandomScreen = () => {
                 "x-rapidapi-key": API_KEY
             }
         }).then(response => response.json().then(res => res)).then(final => {
-            setJoke('');  
+            setJoke('');
             setTrivia(final.text);
         })
-        .catch(err => {
-            console.log("Something went wrong")
-        });
-      };
+            .catch(err => {
+                console.log("Something went wrong")
+            });
+    };
 
 
 
@@ -52,56 +53,56 @@ const RandomScreen = () => {
 
     const toggleOverlay = () => {
         setVisible(!visible);
-      };
+    };
 
-    return ( 
+    return (
         <View style={styles.container}>
-            <Button 
-                title="Random Joke, need a laugh?" 
-                buttonStyle={styles.jokeButton} 
+            <Button
+                title="Random Joke, need a laugh?"
+                buttonStyle={styles.jokeButton}
                 titleStyle={{ color: 'black' }}
-                icon={() => <FontAwesome5 name= "laugh" size={25} style={{ marginRight: 8 }}/>}
-                onPress={ async () => {
+                icon={() => <FontAwesome5 name="laugh" size={25} style={{ marginRight: 8 }} />}
+                onPress={async () => {
                     setTrivia('');
                     await fetchJoke();
                     toggleOverlay();
-                }} 
-                />
-            <Button 
-                title="Random Trivia, did you know?" 
-                buttonStyle={styles.triviaButton} 
-                titleStyle={{ color: 'black'}}
-                icon={() => <FontAwesome name= "question" size={25} style={{ marginRight: 8 }}/>}
+                }}
+            />
+            <Button
+                title="Random Trivia, did you know?"
+                buttonStyle={styles.triviaButton}
+                titleStyle={{ color: 'black' }}
+                icon={() => <FontAwesome name="question" size={25} style={{ marginRight: 8 }} />}
                 onPress={async () => {
                     setJoke('');
                     await fetchTrivia();
                     toggleOverlay();
                 }}
-                />
-            <Button 
-                title="Random Meal, can't decide?" 
-                buttonStyle={styles.mealButton} 
-                titleStyle={{ color: 'black' }} 
-                icon={() => <Ionicons name= "fast-food-sharp" size={25} style={{ marginRight: 4 }}/>} 
+            />
+            <Button
+                title="Random Meal, can't decide?"
+                buttonStyle={styles.mealButton}
+                titleStyle={{ color: 'black' }}
+                icon={() => <Ionicons name="fast-food-sharp" size={25} style={{ marginRight: 4 }} />}
                 onPress={() => {
                     toggleOverlay();
                 }}
-                />
+            />
 
-            <Overlay 
-                isVisible={visible} 
+            <Overlay
+                isVisible={visible}
                 onBackdropPress={toggleOverlay}
-                overlayStyle={{ height: height/2, width: width - 100 }}
+                overlayStyle={{ height: height / 2, width: width - 100 }}
             >
-                {joke ? <OverlayWithin title="Here's the joke!" text={joke}/> : <OverlayWithin title="Here's the trivia" text={trivia}/>}
+                {joke ? <OverlayWithin title="Here's the joke!" text={joke} /> : <OverlayWithin title="Here's the trivia" text={trivia} />}
             </Overlay>
         </View>
-     );
+    );
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#23272a',
+        backgroundColor: SECONDARY_400,
         flex: 1,
         justifyContent: 'center'
     },
@@ -111,21 +112,21 @@ const styles = StyleSheet.create({
     triviaButton: {
         borderRadius: 5,
         marginHorizontal: 15,
-        marginBottom:30,
+        marginBottom: 30,
         backgroundColor: '#2DDFFF'
     },
     jokeButton: {
         borderRadius: 5,
         marginHorizontal: 15,
-        marginBottom:30,
+        marginBottom: 30,
         backgroundColor: '#F5F474'
     },
     mealButton: {
         borderRadius: 5,
         marginHorizontal: 15,
-        marginBottom:30,
+        marginBottom: 30,
         backgroundColor: '#E33CC7'
     }
 });
- 
+
 export default RandomScreen;

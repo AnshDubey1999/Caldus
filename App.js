@@ -10,6 +10,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import RandomScreen from './src/screens/RandomScreen';
 import IngredientToRecipeScreen from './src/screens/IngredientToRecipeScreen';
 import RecipeScreen from './src/components/RecipeScreen';
+import { PRIMARY_400, SECONDARY_400 } from './src/GeneralStyle';
 
 const Stack1 = createNativeStackNavigator();
 
@@ -27,8 +28,8 @@ const MyTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    card: '#23272a',
-    border: '#23272a',
+    card: SECONDARY_400,
+    border: SECONDARY_400,
     text: 'white',
   },
 };
@@ -51,9 +52,9 @@ function App() {
             return <Ionicons name="fast-food-outline" size={size} color={color} />;
 
           },
-          tabBarActiveTintColor: 'tomato',
+          tabBarActiveTintColor: PRIMARY_400,
           tabBarInactiveTintColor: 'gray',
-          tabBarBackground: () => <View style={{ backgroundColor: '#23272a', flex: 1 }}></View>,
+          tabBarBackground: () => <View style={{ backgroundColor: SECONDARY_400, flex: 1 }}></View>,
           tabBarShowLabel: false,
           tabBarStyle: styles.tabStyle
         })}>
