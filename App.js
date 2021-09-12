@@ -23,6 +23,17 @@ const RootStack1 = () => {
   );
 };
 
+const Stack2 = createNativeStackNavigator();
+
+const RootStack2 = () => {
+  return(
+    <Stack2.Navigator>
+      <Stack2.Screen name="IngredientsToRecipe" component={IngredientToRecipeScreen}/>
+      <Stack2.Screen name="RecipeScreenAgain" component={RecipeScreen}/>
+    </Stack2.Navigator>
+  )
+}
+
 const Tab = createBottomTabNavigator();
 const MyTheme = {
   ...DefaultTheme,
@@ -59,8 +70,8 @@ function App() {
           tabBarStyle: styles.tabStyle,
         })}>
           <Tab.Screen name="HomeScreen" component={RootStack1} options={{ headerShown: false }} />
-          <Tab.Screen name="Random" component={RandomStack} />
-          <Tab.Screen name="IngredientToRecipe" component={IngredientToRecipeScreen} />
+          <Tab.Screen name="Random" component={RandomScreen} />
+          <Tab.Screen name="IngredientToRecipeScreen" component={RootStack2} options={{ headerShown: false }}/>
         </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
