@@ -8,8 +8,8 @@ import { PRIMARY_400, PRIMARY_500, SECONDARY_300, styles } from '../GeneralStyle
 import { swap } from '../general';
 import { ProgressChart } from 'react-native-chart-kit';
 
-export default function RecipeScreen(props) {
-
+export default function RecipeScreen({ navigation, route }) {
+    const { id } = route.params;
     const [recipeData, setRecipeData] = useState([0.4, 0.6, 0.8])
     let chartData = {
         labels: ["Protein", "Carbs", "Fat"], // optional
@@ -33,12 +33,12 @@ export default function RecipeScreen(props) {
     useEffect(() => {
         let data = ""
         async function fetchInit() {
-            const nutrition = await GetNutritionById(156992)
-
+            const nutrition = await GetNutritionById(id)
             setRecipeData([Number(nutrition['protein'].slice(0, -1)) / dailyProtein, Number(nutrition['carbs'].slice(0, -1)) / dailyCarbs,
             Number(nutrition['fat'].slice(0, -1)) / dailyFat]
             )
-            data = await GetSearchRecipeAsync(156992)
+
+            data = await GetSearchRecipeAsync(id)
                 ?? {
                 image: 'https://www.aheadofthyme.com/wp-content/uploads/2016/01/indian-butter-chicken-3.jpg',
                 title: 'Some food',
@@ -89,7 +89,7 @@ export default function RecipeScreen(props) {
         <SafeAreaView style={[styles.view]}>
             <ScrollView contentContainerStyle={{ padding: 20, paddingVertical: 50 }}>
                 <View style={{ alignItems: "center" }}>
-                    <Image source={{ width: '100%', height: 200, uri: imageURL }}
+                    <Image source={{ width: '100%', height: 200, uri: imageURL === "" ? "https://www.remodelista.com/wp-content/uploads/2013/03/farrow-and-ball-off-black-paint-1-584x438.jpg" : imageURL }}
                         style={{ borderRadius: 15 }}
                     />
                 </View>
@@ -193,7 +193,7 @@ export default function RecipeScreen(props) {
                     display: "flex", alignItems: 'center', justifyContent: 'center'
                 }}
                 underlayColor={PRIMARY_500}
-                onPress={() => null}
+                onPress={() => navigation.goBack()}
             >
                 <Ionicons name="arrow-back-sharp" size={40} color='white' />
             </TouchableHighlight>

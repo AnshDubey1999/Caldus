@@ -11,6 +11,17 @@ import RandomScreen from './src/screens/RandomScreen';
 import IngredientToRecipeScreen from './src/screens/IngredientToRecipeScreen';
 import RecipeScreen from './src/components/RecipeScreen';
 
+const Stack1 = createNativeStackNavigator();
+
+const RootStack1 = () => {
+  return (
+    <Stack1.Navigator>
+      <Stack1.Screen name="Home" component={HomeScreen} />
+      <Stack1.Screen options={{ header: () => null }} name="RecipeScreen" component={RecipeScreen} />
+    </Stack1.Navigator>
+  );
+};
+
 const Tab = createBottomTabNavigator();
 const MyTheme = {
   ...DefaultTheme,
@@ -25,12 +36,12 @@ const MyTheme = {
 function App() {
   return (
     <SafeAreaProvider>
-      {/* <NavigationContainer theme={MyTheme}>
+      <NavigationContainer theme={MyTheme}>
         <Tab.Navigator screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === 'Home') {
+            if (route.name === 'HomeScreen') {
               return <Feather name="home" size={size} color={color} />;
 
             } else if (route.name === 'Random') {
@@ -46,12 +57,11 @@ function App() {
           tabBarShowLabel: false,
           tabBarStyle: styles.tabStyle
         })}>
-          <Tab.Screen name="Home" component={HomeScreen} />
+          <Tab.Screen name="HomeScreen" component={RootStack1} options={{ headerShown: false }} />
           <Tab.Screen name="Random" component={RandomScreen} />
           <Tab.Screen name="IngredientToRecipe" component={IngredientToRecipeScreen} />
         </Tab.Navigator>
-      </NavigationContainer> */}
-      <RecipeScreen id="156992" />
+      </NavigationContainer>
     </SafeAreaProvider>
   );
 }

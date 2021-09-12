@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Text, StyleSheet, View, StatusBar, FlatList } from 'react-native';
+import { Text, StyleSheet, View, StatusBar, FlatList, TouchableOpacity } from 'react-native';
 import { API_HOST, API_KEY, recipesMainList } from '../general';
 
 import RecipeBlock from '../components/RecipeBlock';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
 
     const recipes = recipesMainList.results;
     const baseUri = recipesMainList.baseUri;
@@ -33,7 +33,13 @@ const HomeScreen = () => {
 
     const renderItem = ({ item }) => {
         return(
-            <RecipeBlock recipe={item} baseUri={baseUri}/>
+            <TouchableOpacity onPress={() => {
+                navigation.navigate('RecipeScreen', { 
+                    id: item.id
+                })
+            }}>
+                <RecipeBlock recipe={item} baseUri={baseUri}/>
+            </TouchableOpacity>
         )
     }
 
