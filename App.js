@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { NavigationContainer , DefaultTheme} from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather, FontAwesome, Ionicons } from '@expo/vector-icons';
@@ -18,14 +18,14 @@ const MyTheme = {
     ...DefaultTheme.colors,
     card: '#23272a',
     border: '#23272a',
-    text:'white',
+    text: 'white',
   },
 };
 
 function App() {
   return (
     <SafeAreaProvider>
-      <NavigationContainer theme={MyTheme}>
+      {/* <NavigationContainer theme={MyTheme}>
         <Tab.Navigator screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
@@ -50,8 +50,8 @@ function App() {
           <Tab.Screen name="Random" component={RandomScreen} />
           <Tab.Screen name="IngredientToRecipe" component={IngredientToRecipeScreen} />
         </Tab.Navigator>
-      </NavigationContainer>
-      {/* <RecipeScreen id="156992" /> */}
+      </NavigationContainer> */}
+      <RecipeScreen id="156992" />
     </SafeAreaProvider>
   );
 }
