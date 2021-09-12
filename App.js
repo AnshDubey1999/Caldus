@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, LogBox, Image } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -12,12 +12,17 @@ import IngredientToRecipeScreen from './src/screens/IngredientToRecipeScreen';
 import RecipeScreen from './src/components/RecipeScreen';
 import { PRIMARY_400, SECONDARY_400 } from './src/GeneralStyle';
 
+LogBox.ignoreAllLogs();
+
 const Stack1 = createNativeStackNavigator();
 
 const RootStack1 = () => {
   return (
     <Stack1.Navigator>
-      <Stack1.Screen name="Home" component={HomeScreen} />
+      <Stack1.Screen name="Home" component={HomeScreen} 
+      options={{headerTitle:() => (
+        <Image style={{width: 120, height: 50, marginTop: -10, aspectRatio: 3.5}} source={require("./src/images/caldus.png")} />
+        )}}/>
       <Stack1.Screen options={{ header: () => null }} name="RecipeScreen" component={RecipeScreen} />
     </Stack1.Navigator>
   );
@@ -28,8 +33,8 @@ const Stack2 = createNativeStackNavigator();
 const RootStack2 = () => {
   return(
     <Stack2.Navigator>
-      <Stack2.Screen name="IngredientsToRecipe" component={IngredientToRecipeScreen}/>
-      <Stack2.Screen name="RecipeScreenAgain" component={RecipeScreen}/>
+      <Stack2.Screen name="Ingredients" component={IngredientToRecipeScreen}/>
+      <Stack2.Screen name="Recipe" component={RecipeScreen}/>
     </Stack2.Navigator>
   )
 }

@@ -67,10 +67,10 @@ export default function RecipeScreen({ navigation, route }) {
 
     useEffect(() => {
         let hasSub = true
-        ingredient.forEach(item => getSubstitute(item) === undefined ? hasSub = true : hasSub = false)
+        //ingredient.forEach(item => getSubstitute(item).toLowerCase() !== item.toLowerCase() ? hasSub = true : hasSub = false)
         setHasSubstitute(hasSub)
     }, [ingredient])
-
+    
     const getSubstitute = (item) => {
         let lItem = item.toLowerCase()
         const index = Object.keys(swap).findIndex(x => x === lItem)
@@ -89,7 +89,7 @@ export default function RecipeScreen({ navigation, route }) {
         <SafeAreaView style={[styles.view]}>
             <ScrollView contentContainerStyle={{ padding: 20, paddingVertical: 50 }}>
                 <View style={{ alignItems: "center" }}>
-                    <Image source={{ width: '100%', height: 200, uri: imageURL === "" ? "https://www.remodelista.com/wp-content/uploads/2013/03/farrow-and-ball-off-black-paint-1-584x438.jpg" : imageURL }}
+                    <Image source={{ width: '100%', height: 200, uri: imageURL === "" || imageURL === undefined ? "https://www.remodelista.com/wp-content/uploads/2013/03/farrow-and-ball-off-black-paint-1-584x438.jpg" : imageURL }}
                         style={{ borderRadius: 15 }}
                     />
                 </View>
@@ -141,8 +141,8 @@ export default function RecipeScreen({ navigation, route }) {
                             <Text style={{ fontWeight: 'bold', textAlign: 'center', color: PRIMARY_400, fontSize: 12 }}> {ingredientAmount[index]} </Text>
                             <Text style={{ fontWeight: 'bold', textAlign: 'center', color: PRIMARY_400, fontSize: 12, }}> {unitAmount[index]}  </Text>
                         </View>
-                        {(getSubstitute(item) !== undefined && optimize) && <View style={{ flexDirection: 'row', justifyContent: 'flex-start', padding: 3, paddingHorizontal: 10, backgroundColor: SECONDARY_300, borderRadius: 10 }}>
-                            <Text style={{ fontWeight: 'bold', textAlign: 'center', color: PRIMARY_400, fontSize: 12 }}>Optimized</Text>
+                        {(getSubstitute(item).toLowerCase() !== item && optimize) && <View style={{ flexDirection: 'row', justifyContent: 'flex-start', padding: 3, paddingHorizontal: 10, backgroundColor: SECONDARY_300, borderRadius: 10 }}>
+                            <Text style={{ fontWeight: 'bold', textAlign: 'center', color: PRIMARY_400, fontSize: 12 }}>Optimized  </Text>
                         </View>}
                     </View>
                 )}
@@ -195,7 +195,7 @@ export default function RecipeScreen({ navigation, route }) {
                 underlayColor={PRIMARY_500}
                 onPress={() => navigation.goBack()}
             >
-                <Ionicons name="arrow-back-sharp" size={40} color='white' />
+                <Ionicons name="arrow-back-sharp" size={25} color='white' />
             </TouchableHighlight>
         </SafeAreaView>
     )

@@ -6,12 +6,32 @@ import { Input, Chip, Button, Overlay } from 'react-native-elements';
 import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import { PRIMARY_400, SECONDARY_400 } from '../GeneralStyle';
 import OverlayWithin2 from '../components/OverlayWithin2';
-import { ingredientToRecipeTest } from '../general';
+import { API_HOST, API_KEY, recipesMainList } from '../general';
 
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 
 const IngredientToRecipeScreen = ({ navigation }) => {
+
+    const [ingredientToRecipeTest, setList1] = useState([]);
+    const fetchRecipesFromIngredients = async () => {
+        const temp = ingredientList.map(item => item.name);
+        const stringToPass = temp.join('%2c');
+        await fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ranking=1&ignorePantry=true&number=1&ingredients="+ stringToPass, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": API_HOST,
+                "x-rapidapi-key": API_KEY
+            }
+        }).then(response => response.json().then(res => res)).then(final => {
+            console.log("Final", final);
+            setList1(final);
+        })
+        .catch(err => {
+            console.log("Something went wrong")
+        });
+
+    }
 
     const [input, setInput] = useState('');
     const [ingredientList, setList] = useState([]);
@@ -85,7 +105,8 @@ const IngredientToRecipeScreen = ({ navigation }) => {
                 <Button
                     title="Find Recipes!"
                     buttonStyle={{ backgroundColor: PRIMARY_400, marginTop: 250, marginHorizontal: 15, borderRadius: 6 }}
-                    onPress={() => {
+                    onPress={ async () => {
+                        await fetchRecipesFromIngredients();
                         toggleOverlay();
                     }}
                 />

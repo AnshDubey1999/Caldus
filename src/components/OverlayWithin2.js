@@ -12,13 +12,20 @@ const OverlayWithin2 = (props) => {
         return(
             <TouchableOpacity onPress={() => {
                 toggle()
-                navigation.navigate('RecipeScreenAgain', { id: item.id });
+                navigation.navigate('Recipe', { id: item.id });
             }}>
                 <RecipeBlockSmall recipe={item}/>
             </TouchableOpacity>
         )
     }
-
+    if(items.length == 0)
+    {
+        return(
+            <View style={{ alignItems: 'center' }}>
+                <Text style={{ fontWeight: 'bold', fontSize: 15 }}>No recipes found!</Text>
+            </View>
+        )
+    }
     return(
         <View>
             <FlatList 
