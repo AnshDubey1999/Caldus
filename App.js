@@ -16,6 +16,7 @@ const MyTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
+    background: '#23272a',
     card: '#23272a',
     border: '#23272a',
     text:'white',
@@ -42,7 +43,7 @@ function App() {
           },
           tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: 'gray',
-          tabBarBackground: () => <View style={{ backgroundColor: '#23272a', flex: 1 }}></View>,
+          tabBarBackground: () => <View style={{ backgroundColor: MyTheme.colors.background, flex: 1 }}></View>,
           tabBarShowLabel: false,
           tabBarStyle: styles.tabStyle
         })}>

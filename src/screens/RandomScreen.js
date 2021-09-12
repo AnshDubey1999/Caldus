@@ -101,7 +101,6 @@ const RandomScreen = () => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#23272a',
         flex: 1,
         justifyContent: 'center'
     },
