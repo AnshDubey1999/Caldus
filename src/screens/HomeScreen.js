@@ -12,7 +12,7 @@ const HomeScreen = () => {
     const [baseUri, setBaseUri] = useState('');
 
     const fetchHealthyRecipes = async () => {
-        await fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=healthy&number=100", {
+        await fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?query=healthy&number=1", {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": API_HOST,
