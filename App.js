@@ -16,7 +16,7 @@ const Tab = createBottomTabNavigator();
 function App() {
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
+      {/* <NavigationContainer>
         <Tab.Navigator screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
@@ -27,22 +27,22 @@ function App() {
             } else if (route.name === 'Random') {
               return <FontAwesome name="random" size={size} color={color} />;
             }
-            
+
             return <Ionicons name="fast-food-outline" size={size} color={color} />;
-            
+
           },
           tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: 'gray',
-          tabBarBackground: () => <View style={{backgroundColor: '#23272a', flex: 1}}></View>,
+          tabBarBackground: () => <View style={{ backgroundColor: '#23272a', flex: 1 }}></View>,
           tabBarShowLabel: false,
           tabBarStyle: styles.tabStyle
         })}>
-          <Tab.Screen name="Home" component={HomeScreen}/>
-          <Tab.Screen name="Random" component={RandomScreen}/>
-          <Tab.Screen name="IngredientToRecipe" component={IngredientToRecipeScreen}/>
+          <Tab.Screen name="Home" component={HomeScreen} />
+          <Tab.Screen name="Random" component={RandomScreen} />
+          <Tab.Screen name="IngredientToRecipe" component={IngredientToRecipeScreen} />
         </Tab.Navigator>
-      </NavigationContainer>
-      // <RecipeScreen id="156992" />
+      </NavigationContainer> */}
+      <RecipeScreen id="156992" />
     </SafeAreaProvider>
   );
 }
