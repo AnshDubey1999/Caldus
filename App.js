@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Image } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer , DefaultTheme} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -16,7 +16,10 @@ const Stack1 = createNativeStackNavigator();
 const RootStack1 = () => {
   return(
     <Stack1.Navigator>
-      <Stack1.Screen name="Home" component={HomeScreen}/>
+      <Stack1.Screen name="Caldus" component={HomeScreen} 
+      options={{headerTitle:() => (
+        <Image style={{width: 120, height: 50, marginTop: -10, aspectRatio: 3.5}} source={require("./src/images/caldus.png")} />
+        )}}/>
       <Stack1.Screen name="RecipeScreen" component={RecipeScreen} />
     </Stack1.Navigator>
   );
@@ -29,7 +32,7 @@ const MyTheme = {
     ...DefaultTheme.colors,
     card: '#23272a',
     border: '#23272a',
-    text:'white',
+    text:'#ffaa54'
   },
 };
 
@@ -41,7 +44,7 @@ function App() {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === 'Home') {
+            if (route.name === 'HomeScreen') {
               return <Feather name="home" size={size} color={color} />;
 
             } else if (route.name === 'Random') {
