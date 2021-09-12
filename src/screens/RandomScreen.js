@@ -4,14 +4,25 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Text, StyleSheet, View, Dimensions, ScrollView } from 'react-native';
 import { Button, Overlay } from 'react-native-elements';
 import { Ionicons, FontAwesome5, FontAwesome } from '@expo/vector-icons';
-import { API_HOST, API_KEY } from '../general';
+import { API_HOST, API_KEY, recipesMainList } from '../general';
 import OverlayWithin from '../components/OverlayWithin';
 import { SECONDARY_400 } from '../GeneralStyle';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import RecipeScreen from '../components/RecipeScreen';
 
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 
-const RandomScreen = () => {
+const RandomStackNav = createNativeStackNavigator()
+
+export const RandomStack = () => {
+    return (<RandomStackNav.Navigator initialRouteName="RandomScreen" screenOptions={{ header: () => null }}>
+        <RandomStackNav.Screen name="RandomScreen" options={{ header: () => null }} component={RandomScreen} />
+        <RandomStackNav.Screen name="RecipeScreen" options={{ header: () => null }} component={RecipeScreen} />
+    </RandomStackNav.Navigator>)
+}
+
+export const RandomScreen = ({ navigation }) => {
 
     const fetchJoke = async () => {
         await fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/jokes/random", {
@@ -51,6 +62,8 @@ const RandomScreen = () => {
     const [trivia, setTrivia] = useState('');
     const [visible, setVisible] = useState(false);
 
+    const recipesResults = recipesMainList['results']
+
     const toggleOverlay = () => {
         setVisible(!visible);
     };
@@ -85,7 +98,7 @@ const RandomScreen = () => {
                 titleStyle={{ color: 'black' }}
                 icon={() => <Ionicons name="fast-food-sharp" size={25} style={{ marginRight: 4 }} />}
                 onPress={() => {
-                    toggleOverlay();
+                    navigation.navigate('RecipeScreen', { id: recipesResults[Math.floor(Math.random() * recipesResults.length)]['id'] })
                 }}
             />
 

@@ -7,7 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather, FontAwesome, Ionicons } from '@expo/vector-icons';
 
 import HomeScreen from './src/screens/HomeScreen';
-import RandomScreen from './src/screens/RandomScreen';
+import RandomScreen, { RandomStack } from './src/screens/RandomScreen';
 import IngredientToRecipeScreen from './src/screens/IngredientToRecipeScreen';
 import RecipeScreen from './src/components/RecipeScreen';
 import { PRIMARY_400, SECONDARY_400 } from './src/GeneralStyle';
@@ -56,10 +56,10 @@ function App() {
           tabBarInactiveTintColor: 'gray',
           tabBarBackground: () => <View style={{ backgroundColor: SECONDARY_400, flex: 1 }}></View>,
           tabBarShowLabel: false,
-          tabBarStyle: styles.tabStyle
+          tabBarStyle: styles.tabStyle,
         })}>
           <Tab.Screen name="HomeScreen" component={RootStack1} options={{ headerShown: false }} />
-          <Tab.Screen name="Random" component={RandomScreen} />
+          <Tab.Screen name="Random" component={RandomStack} />
           <Tab.Screen name="IngredientToRecipe" component={IngredientToRecipeScreen} />
         </Tab.Navigator>
       </NavigationContainer>
