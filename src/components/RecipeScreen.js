@@ -8,7 +8,9 @@ import { PRIMARY_400, PRIMARY_500, SECONDARY_300, styles } from '../GeneralStyle
 import { swap } from '../general';
 import { ProgressChart } from 'react-native-chart-kit';
 
-export default function RecipeScreen(props) {
+export default function RecipeScreen({ route }) {
+
+    const { id } = route.params;
 
     const data = {
         labels: ["Protein", "Carbs", "Fat"], // optional
@@ -28,7 +30,7 @@ export default function RecipeScreen(props) {
     useEffect(() => {
         let data = ""
         async function fetchInit() {
-            data = await GetSearchRecipeAsync(props.id)
+            data = await GetSearchRecipeAsync(id);
             // ?? {
             //     image: 'https://www.aheadofthyme.com/wp-content/uploads/2016/01/indian-butter-chicken-3.jpg',
             //     title: 'Some food',

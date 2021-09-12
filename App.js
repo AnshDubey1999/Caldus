@@ -11,6 +11,17 @@ import RandomScreen from './src/screens/RandomScreen';
 import IngredientToRecipeScreen from './src/screens/IngredientToRecipeScreen';
 import RecipeScreen from './src/components/RecipeScreen';
 
+const Stack1 = createNativeStackNavigator();
+
+const RootStack1 = () => {
+  return(
+    <Stack1.Navigator>
+      <Stack1.Screen name="Home" component={HomeScreen}/>
+      <Stack1.Screen name="RecipeScreen" component={RecipeScreen} />
+    </Stack1.Navigator>
+  );
+};
+
 const Tab = createBottomTabNavigator();
 const MyTheme = {
   ...DefaultTheme,
@@ -46,7 +57,7 @@ function App() {
           tabBarShowLabel: false,
           tabBarStyle: styles.tabStyle
         })}>
-          <Tab.Screen name="Home" component={HomeScreen} />
+          <Tab.Screen name="HomeScreen" component={RootStack1} options={{ headerShown: false }} />
           <Tab.Screen name="Random" component={RandomScreen} />
           <Tab.Screen name="IngredientToRecipe" component={IngredientToRecipeScreen} />
         </Tab.Navigator>
